@@ -7,18 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var SpeedUnitPipe = (function () {
+    function SpeedUnitPipe() {
     }
-    return AppComponent;
+    SpeedUnitPipe.prototype.transform = function (speed, unitType) {
+        switch (unitType) {
+            case "kph":
+                var miles = Math.round(speed * 1.6);
+                return miles + "kph";
+            default:
+                speed = Math.round(speed);
+                return speed + "mph";
+        }
+    };
+    return SpeedUnitPipe;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        template: "\n        <div class=\"container\">\n            <div class=\"col-md-6 col-lg-4\">\n                <weather-widget>\n                </weather-widget>\n            </div>\n        </div>\n    ",
-        styles: ["\n        .container {\n            padding-top: 5rem;\n        }\n    "
-        ]
+SpeedUnitPipe = __decorate([
+    core_1.Pipe({
+        name: 'speedUnit'
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], SpeedUnitPipe);
+exports.SpeedUnitPipe = SpeedUnitPipe;
+//# sourceMappingURL=speed-unit.pipe.js.map
